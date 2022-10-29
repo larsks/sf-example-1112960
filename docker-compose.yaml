@@ -1,0 +1,19 @@
+services:
+  backend1:
+    image: docker.io/httpd:2.4
+    volumes:
+      - ./backend1/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./backend1/htdocs:/usr/local/apache2/htdocs
+
+  backend2:
+    image: docker.io/httpd:2.4
+    volumes:
+      - ./backend2/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./backend2/htdocs:/usr/local/apache2/htdocs
+
+  frontend:
+    image: docker.io/nginx:mainline
+    volumes:
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8080:80
